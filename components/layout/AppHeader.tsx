@@ -8,9 +8,6 @@ function getTitle(pathname: string)  {
 
 
   if(pathname === "/dashboard") return "Overview"
-
-  if(pathname === "/customers") return "Customers"
-  if(pathname === "/orders") return "Orders"
   if(pathname === "/settings") return "Settings"
 
   return "Info"

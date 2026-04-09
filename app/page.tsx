@@ -1,16 +1,7 @@
-'use client'
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
-
-// Look for any thing that i can improve in this to make a good template for my future dasboards
+import { redirect } from "next/navigation"
 
 export default function Home() {
-
-  const router = useRouter()
-
-  useEffect(() => {
-    router.push('/dashboard')
-  }, [router])
+  redirect('/dashboard')
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
