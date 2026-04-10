@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "./button"
 import { LogOut } from "lucide-react"
 import { useRouter } from "next/navigation"

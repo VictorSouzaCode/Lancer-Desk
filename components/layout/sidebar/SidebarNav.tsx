@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/sidebar"
 import Link from "next/link"
 import type { navItemsType } from "@/lib/types/navItemsType"
-import { usePathname, useRouter } from "next/navigation"
 
 type SidebarNavProps = {
   items: navItemsType
@@ -16,13 +15,6 @@ type SidebarNavProps = {
 
 
 const SidebarNav = ({ items }: SidebarNavProps) => {
-  const pathname = usePathname();
-  const router = useRouter();
-
-  async function handleLogout() {
-    
-    router.push("/login")
-  }
 
   return (
     <SidebarGroup>
