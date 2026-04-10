@@ -1,6 +1,6 @@
 'use client'
 import { SidebarTrigger } from "../ui/sidebar"
-import { User } from "lucide-react"
+import { User} from "lucide-react"
 import { usePathname } from "next/navigation"
 import { LogoutBtn } from "../ui/logout-button"
 
