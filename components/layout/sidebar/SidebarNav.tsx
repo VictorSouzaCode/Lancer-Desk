@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sidebar"
 import Link from "next/link"
 import type { navItemsType } from "@/lib/types/navItemsType"
+import { usePathname } from "next/navigation"
 
 type SidebarNavProps = {
   items: navItemsType
@@ -15,6 +16,7 @@ type SidebarNavProps = {
 
 
 const SidebarNav = ({ items }: SidebarNavProps) => {
+  const pathname = usePathname();
 
   return (
     <SidebarGroup>
@@ -23,9 +25,11 @@ const SidebarNav = ({ items }: SidebarNavProps) => {
       <SidebarGroupContent>
         <SidebarMenu className="flex flex-col gap-1">
           {items.map((item) => {
+
             return (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
+                  isActive={pathname === item.href}
                   asChild
                   className="h-12"
                 >
