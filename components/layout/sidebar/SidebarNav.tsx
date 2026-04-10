@@ -31,28 +31,16 @@ const SidebarNav = ({ items }: SidebarNavProps) => {
       <SidebarGroupContent>
         <SidebarMenu className="flex flex-col gap-1">
           {items.map((item) => {
-            const isLogout = item.function === "logout";
-
             return (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
-                  isActive={!isLogout && pathname === item.href}
-                  onClick={isLogout ? handleLogout : undefined}
                   asChild
                   className="h-12"
                 >
-                  {isLogout ? (
-                    <div className="flex items-center gap-4 px-3 cursor-pointer">
-                      <item.icon/>
-                      <span>{item.title}</span>
-                    </div>
-                  ) : (
-                    <Link href={item.href} className="flex items-center gap-4 px-3">
+                  <Link href={item.href} className="flex items-center gap-4 px-3">
                       <item.icon/>
                       <span>{item.title}</span>
                     </Link>
-                  )}
-
                 </SidebarMenuButton>
               </SidebarMenuItem>)
 

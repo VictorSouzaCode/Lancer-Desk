@@ -2,6 +2,7 @@
 import { SidebarTrigger } from "../ui/sidebar"
 import { User } from "lucide-react"
 import { usePathname } from "next/navigation"
+import { LogoutBtn } from "../ui/logout-button"
 
 
 function getTitle(pathname: string)  {
@@ -33,8 +34,9 @@ const AppHeader = () => {
       <div className="ml-auto flex items-center gap-2">
         <div className="ml-auto flex items-center gap-2 text-sm">
           <User className="h-4 w-4 text-muted-foreground"/>
-          <span></span>
+          <span>Victor</span>
         </div>
+        <LogoutBtn/>
       </div>
       </div>
 
