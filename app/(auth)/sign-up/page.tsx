@@ -3,9 +3,12 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
+import Link from "next/link";
 
 const SignUpPage = () => {
     const router = useRouter();
+    const supabase = createClient();
 
      const [name, setName] = useState("");
      const [email, setEmail] = useState("");
@@ -25,9 +28,18 @@ const SignUpPage = () => {
             return;
           }
 
-          // future signup logic here
+          const { error } = await supabase.auth.signUp({
+            email,
+            password,
+          })
 
-          router.push("/dashboard");
+          if(error) {
+            setError(error.message);
+            return
+          }
+
+          router.push("/login");
+
         } catch (error) {
           console.error(error);
           setError("Something went wrong");
@@ -39,7 +51,7 @@ const SignUpPage = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 max-w-sm mx-auto min-w-full min-h-screen flex items-center justify-center"
+      className="space-y-4 max-w-sm mx-auto min-w-full min-h-screen flex items-center justify-center flex-col"
     >
       <div className="min-h-96 flex flex-col justify-center items-center min-w-72 gap-2 p-2">
         <h1 className="text-2xl font-semibold">Sign Up</h1>
@@ -78,7 +90,7 @@ const SignUpPage = () => {
           {loading ? "Creating account..." : "Sign Up"}
         </Button>
       </div>
-      <p className="text-sm">Already have an account? Sign in</p>
+      <p className="text-sm">Already have an account? <Link href="/login" className="font-semibold">sign-in</Link></p>
     </form>
   );
 }
