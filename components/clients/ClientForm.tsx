@@ -3,9 +3,11 @@ import { useState } from "react"
 import { createClient } from "@/lib/supabase/client"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
+import { useRouter } from "next/navigation"
 
 const ClientForm = () => {
     const supabase = createClient()
+    const router = useRouter()
 
     const [ name, setName ] = useState('')
     const [ email, setEmail ] = useState('')
@@ -37,6 +39,7 @@ const ClientForm = () => {
             setName("")
             setEmail("")
             setCompany("")
+            router.refresh()
         }
 
         setLoading(false)
