@@ -28,7 +28,10 @@ const SignUpPage = () => {
             return;
           }
 
-          const { error } = await supabase.auth.signUp({
+          const {
+            data: { user },
+            error
+          } = await supabase.auth.signUp({
             email,
             password,
           })
@@ -38,7 +41,21 @@ const SignUpPage = () => {
             return
           }
 
-          router.push("/login");
+          if(user) {
+            const { error: profileError } = await supabase
+            .from("profiles")
+            .insert({
+              id: user.id,
+              username: name,
+              email,
+            });
+
+            if (profileError) {
+            setError(profileError.message)
+          }
+          }
+
+          router.push("/dashboard");
 
         } catch (error) {
           console.error(error);
