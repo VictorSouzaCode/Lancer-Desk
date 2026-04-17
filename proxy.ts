@@ -12,3 +12,6 @@ export const config = {
 };
 
 // This applies session refresh globally.
+// for now it is only handling the session refresh
+// the protection route is inside the layout page inside dashboard folder
+// Because middleware auth protection too early creates harder debugging.

@@ -1,6 +1,8 @@
 import AppSidebar from "@/components/layout/sidebar/AppSidebar"
 import AppHeader from "@/components/layout/AppHeader"
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
+import { createClient } from "@/lib/supabase/server"
+import { redirect } from "next/navigation"
 
 
 type DashboardLayoutProps = {
@@ -8,9 +10,18 @@ type DashboardLayoutProps = {
 }
 
 
-const DashboardLayout = ({
+const DashboardLayout = async ({
     children,
 }: DashboardLayoutProps) => {
+    const supabase = await createClient();
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser()
+
+    if(!user) {
+        redirect("/login")
+    }
 
   return (
     <SidebarProvider>
