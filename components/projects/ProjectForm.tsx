@@ -35,19 +35,21 @@
         if (!user) return
 
         const { error } = await supabase
-        .from('project')
+        .from('projects')
         .insert({
             user_id: user.id,
             client_id: clientId,
             title,
-            budget: Number(budget)
+            budget: budget ? Number(budget) : null
         });
 
-        if(!error) {
-            setTitle('')
-            setBudget('')
-            setClientId('')
-            router.refresh()
+        if(error) {
+          console.error(error.message);          
+        } else {
+          setTitle('')
+          setBudget('')
+          setClientId('')
+          router.refresh()
         }
 
         setLoading(false)
