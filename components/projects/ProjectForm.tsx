@@ -40,6 +40,7 @@
             user_id: user.id,
             client_id: clientId,
             title,
+            status: 'active',
             budget: budget ? Number(budget) : null
         });
 
